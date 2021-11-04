@@ -1,0 +1,4 @@
+domain minikube
+nameserver 192.168.99.100
+search_order 1
+timeout 5

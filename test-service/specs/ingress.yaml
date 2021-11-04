@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-test-service
+  namespace: test-service
+  annotations:
+    cert-manager.io/cluster-issuer: "mkcert-ca-cluster-issuer"
+spec:
+  rules:
+  - host: test-service.minikube
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: test-service
+            port: 
+              number: 80
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - test-service.minikube
+      secretName: ingress-test-service-tls
